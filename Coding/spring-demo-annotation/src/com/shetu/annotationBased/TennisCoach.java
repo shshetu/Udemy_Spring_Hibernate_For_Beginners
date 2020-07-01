@@ -1,18 +1,33 @@
 package com.shetu.annotationBased;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
-@Scope("prototype")
+@Scope("singleton")
 public class TennisCoach implements Coach {
 
 	// Field injection
 	@Autowired
 	@Qualifier("randomFortuneService")
 	private FortuneService fortuneService;
+	
+	// Post Construct
+	@PostConstruct
+	public void doMyStartupStuff() {
+		System.out.println("Inside doMyStartupStuff() method");
+	}
+	
+	// Pre Destroy
+	@PreDestroy
+	public void doMyCleanupStuff() {
+		System.out.println("Inside doMyCleanupStuff() method");	
+	}
 
 	/*// constructor injection
 	 * @Autowired public TennisCoach(FortuneService fortuneService) {

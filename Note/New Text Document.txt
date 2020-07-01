@@ -1,0 +1,72 @@
+Inside Controller:
+----------------
+/showForm
+/helloWorld
+
+View:
+======
+helloWorld.jsp
+helloWorld-form.jsp
+
+
+# New Class: HelloWorldController.java
+======================================
+Controller:
+-----------
+1. @RequestMapping("/showForm"): return => helloWorld-form
+
+helloWorld-form.jsp:
+--------------------
+<form action="processForm" method="GET">
+<input type="text" name="studentName" placeholder/>
+<input type="submit"/>
+ </form>
+
+2. @RequestMapping("/processForm"): return => helloWorld
+
+helloWorld.jsp:
+---------------
+Hello World of Spring!
+<br><br>
+Student name: ${param.studentName}
+
+### Main Page
+<a href="showForm">Hello World from</a>
+
+### Video: 114
+---------------
+Model:
+----- 
+i. Spring Model is a container for data. 
+ii. Any kind o data can be added to the model.
+
+# method: 
+@RequestMapping("processFormVersionTwo")
+letsShoutDude(HttpServletRequest request, Model model){
+String studentName = request.getParameter("studentName");
+studentName = studentName.toUpperCase();
+String result = "Yo!"+studentName;
+model.addAttribute("message",result);
+return "helloWorld"
+}
+
+*. message -> attributeName (key)
+
+### In JSP Page:
+----------------
+The message: ${message}
+
+
+#######  Adding more data to the model
+String result = ...
+List<Student> students = ...
+ShoppingCart shoppingCart = ....
+
+
+
+####### Model
+model.addAttribute("result",)
+model
+
+* Initially model is empty
+
